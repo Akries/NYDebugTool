@@ -124,9 +124,8 @@ NSString * const kDebugChangedNotification = @"";
 - (UILabel *)showLabel
 {
     if (!_showLabel) {
-        _showLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, Screen_Height - 300, Screen_Width - 60, 180)];
-        _showLabel.font = [UIFont font14];
-        _showLabel.textColor = Color_00b2a9;
+        _showLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width - 60, 180)];
+        _showLabel.font = [UIFont systemFontOfSize:14.0];
         _showLabel.numberOfLines = 0;
         _showLabel.text = [NSString stringWithFormat:@"当前域名:\n%@\n\n tcp:\n %@\n\n 数据上报\n%@",ny_CurrentApiHost(),ny_CurrentMqttHost(),ny_CurrentReportURL()];
     }
