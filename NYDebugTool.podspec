@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Akries/NYDebugTool.git", :tag =>'1.1.1' }
 
   s.platform     = :ios, '8.0'
-  s.source_files  = "**/*.{h,m,xib}"
-  s.resources = ['*.{xib}']
+  s.source_files  = "**/*.{h,m}"
+  s.resources = ['**/*.{xib}']
 
  s.resource_bundles = {
      'NYDebugTool' => ['Pod/Classes/**/*.xib']
