@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Akries/NYDebugTool.git", :tag =>'1.1.0' }
 
   s.platform     = :ios, '6.0'
-  s.source_files  = "**/*.{h,m}"
+  s.source_files  = "**/*.{h,m,xib}"
 
   s.requires_arc = true
 
