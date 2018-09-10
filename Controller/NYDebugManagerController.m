@@ -76,6 +76,11 @@ NSString * const kDebugChangedNotification = @"";
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    else if (indexPath.row == 4) {
+        cell.textLabel.text = @"开启模拟导航";
+        cell.accessoryView = [self addEmulatorNaviModeModeSwitch];
+    }
+
     return cell;
 }
 
@@ -119,6 +124,9 @@ NSString * const kDebugChangedNotification = @"";
 #pragma mark - AddDebugModeSwitch
 - (void)changeDebugMode:(UISwitch *)debugSwitch{
     [NYDebugManager defaultManager].appDebugMode = debugSwitch.on;
+}
+- (void)changeEmulatorNaviMode:(UISwitch *)debugSwitch{
+    [NYDebugManager defaultManager].appEmulatorNaviMode = debugSwitch.on;
 }
 
 - (UILabel *)showLabel

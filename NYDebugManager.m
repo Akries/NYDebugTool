@@ -46,6 +46,15 @@ NSString * const AppDebugModeChangedNotification = @"AppDebugModeChanged";
     
 }
 
+-(void)setAppEmulatorNaviMode:(BOOL)appEmulatorNaviMode {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:appEmulatorNaviMode] forKey:@"appEmulatorNaviMode"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(BOOL)appEmulatorNaviMode {
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"appEmulatorNaviMode"] boolValue];
+}
+
 #pragma mark - kDebugChangedNotification
 - (void)receiveDebugModeChanged{
     

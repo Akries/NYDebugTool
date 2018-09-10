@@ -18,6 +18,9 @@ typedef void(^NYDebugChangedCallback)(void);
 
 @property (nonatomic, assign) BOOL appDebugMode;
 
+@property (nonatomic, assign) BOOL appEmulatorNaviMode;
+
+
 @property (nonatomic, copy) NYDebugChangedCallback changedCallback;
 
 @end
