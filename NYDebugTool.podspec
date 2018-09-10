@@ -15,6 +15,9 @@ Pod::Spec.new do |s|
   s.source_files  = "**/*.{h,m,xib}"
   s.resources = ['*.{xib}']
 
+ s.resource_bundles = {
+     'NYDebugTool' => ['Pod/Classes/**/*.xib']
+ }
 
   s.requires_arc = true
 
