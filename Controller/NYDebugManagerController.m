@@ -121,6 +121,13 @@ NSString * const kDebugChangedNotification = @"";
     return debugModeShift;
 }
 
+- (UISwitch *)addEmulatorNaviModeModeSwitch{
+    UISwitch *debugModeShift = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 65, 38)];
+    debugModeShift.on = [NYDebugManager defaultManager].appEmulatorNaviMode;
+    [debugModeShift addTarget:self action:@selector(changeEmulatorNaviMode:) forControlEvents:UIControlEventValueChanged];
+    return debugModeShift;
+}
+
 #pragma mark - AddDebugModeSwitch
 - (void)changeDebugMode:(UISwitch *)debugSwitch{
     [NYDebugManager defaultManager].appDebugMode = debugSwitch.on;
