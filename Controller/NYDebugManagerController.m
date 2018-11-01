@@ -46,7 +46,7 @@ NSString * const kDebugChangedNotification = @"";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -79,6 +79,9 @@ NSString * const kDebugChangedNotification = @"";
     else if (indexPath.row == 4) {
         cell.textLabel.text = @"开启模拟导航";
         cell.accessoryView = [self addEmulatorNaviModeModeSwitch];
+    }
+    else if (indexPath.row == 5) {
+        cell.textLabel.text = @"开启模拟导航";
     }
 
     return cell;

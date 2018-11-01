@@ -13,7 +13,7 @@
 #import "NYEnviroument.h"
 
 @implementation NYDebugLogo{
-    UILabel *roundView;
+    
 }
 
 + (instancetype)logo{
@@ -34,23 +34,23 @@
     if (self = [super initWithFrame:CGRectMake(screen.size.width-65, screen.size.height/2, 55, 55)]) {
         self.backgroundColor = [UIColor clearColor];
         
-        roundView = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 45, 45)];
-        roundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-        roundView.textAlignment = NSTextAlignmentCenter;
-        roundView.font = [UIFont systemFontOfSize:13];
-        roundView.textColor = [UIColor whiteColor];
-        roundView.adjustsFontSizeToFitWidth = YES;
-        roundView.minimumScaleFactor = 0.2;
-        roundView.clipsToBounds = YES;
-        roundView.layer.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.7] CGColor];
-        roundView.layer.borderWidth = 1;
-        roundView.layer.cornerRadius = roundView.frame.size.width/2;
-        roundView.layer.shadowColor = [[UIColor blackColor] CGColor];
-        roundView.layer.shadowOffset = CGSizeMake(0, 0);
-        roundView.layer.shadowRadius = 5;
-        roundView.layer.shadowOpacity = 0.8;
-        roundView.text = [NYEnviroument defaultEnviroument].enviroumentName;
-        [self addSubview:roundView];
+        _roundView = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 45, 45)];
+        _roundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        _roundView.textAlignment = NSTextAlignmentCenter;
+        _roundView.font = [UIFont systemFontOfSize:13];
+        _roundView.textColor = [UIColor whiteColor];
+        _roundView.adjustsFontSizeToFitWidth = YES;
+        _roundView.minimumScaleFactor = 0.2;
+        _roundView.clipsToBounds = YES;
+        _roundView.layer.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.7] CGColor];
+        _roundView.layer.borderWidth = 1;
+        _roundView.layer.cornerRadius = _roundView.frame.size.width/2;
+        _roundView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        _roundView.layer.shadowOffset = CGSizeMake(0, 0);
+        _roundView.layer.shadowRadius = 5;
+        _roundView.layer.shadowOpacity = 0.8;
+        _roundView.text = [NYEnviroument defaultEnviroument].enviroumentName;
+        [self addSubview:_roundView];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
         tap.numberOfTapsRequired = 2;
@@ -72,7 +72,7 @@
 }
 
 - (void)refreshEnviroumentLabel{
-    roundView.text = [NYEnviroument defaultEnviroument].enviroumentName;
+    _roundView.text = [NYEnviroument defaultEnviroument].enviroumentName;
 }
 
 - (void)setHidden:(BOOL)hidden{

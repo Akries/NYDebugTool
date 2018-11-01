@@ -16,4 +16,6 @@
 
 - (void)refreshEnviroumentLabel;
 
+@property (nonatomic,strong) UILabel *roundView;
+
 @end
