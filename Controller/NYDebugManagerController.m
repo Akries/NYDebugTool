@@ -30,11 +30,11 @@ NSString * const kDebugChangedNotification = @"";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.title = @"调试工具";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     [self.view addSubview:self.showLabel];
-
+    
 }
 
 - (void)back{
@@ -81,9 +81,9 @@ NSString * const kDebugChangedNotification = @"";
         cell.accessoryView = [self addEmulatorNaviModeModeSwitch];
     }
     else if (indexPath.row == 5) {
-        cell.textLabel.text = @"开启模拟导航";
+        cell.textLabel.text = @"iPhone infomation";
     }
-
+    
     return cell;
 }
 
@@ -111,6 +111,12 @@ NSString * const kDebugChangedNotification = @"";
             NYDebugController *debugController = [[NYDebugController alloc] init];
             [self.navigationController pushViewController:debugController animated:YES];
         }break;
+        case 5:{
+            Class class = NSClassFromString(@"NYiPhoneInfoController");
+            if (class) {
+                [self.navigationController pushViewController:[class new] animated:YES];
+            }
+        }
         default:
             break;
     }
