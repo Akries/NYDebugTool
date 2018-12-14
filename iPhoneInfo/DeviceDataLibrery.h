@@ -24,4 +24,7 @@
 - (CGFloat)getBatterVolocity;
 /** 获取CPU处理器名称 */
 - (const NSString *)getCPUProcessor;
+/** CPU频率、速度 */
+- (NSUInteger)getCPUFrequencyContainer;
+
 @end

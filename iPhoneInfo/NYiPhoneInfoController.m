@@ -72,7 +72,7 @@
     NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     [self _addInfoWithKey:@"唯一识别码uuid" infoValue:uuid];
     
-    NSString *aMapServices_identifier = [[AMapServices sharedServices] identifier];
+    NSString *aMapServices_identifier = @"-/-";//[[AMapServices sharedServices] identifier];
     [self _addInfoWithKey:@"aMapServices_identifier" infoValue:aMapServices_identifier];
     
     NSString *macAddress = [[NYdeviceInfoManager sharedManager] getMacAddress];

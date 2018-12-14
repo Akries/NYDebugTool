@@ -132,6 +132,10 @@ typedef NS_ENUM(NSUInteger, DiviceType) {
     return BatteryCapacityContainer[self.iDevice];
 }
 
+- (NSUInteger)getCPUFrequencyContainer{
+    return CPUFrequencyContainer[self.iDevice];
+}
+
 - (CGFloat)getBatterVolocity {
     return BatteryVoltageContainer[self.iDevice];
 }
