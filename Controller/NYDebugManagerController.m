@@ -108,8 +108,11 @@ NSString * const kDebugChangedNotification = @"";
             }];
         }break;
         case 2:{
-            NYDebugController *debugController = [[NYDebugController alloc] init];
-            [self.navigationController pushViewController:debugController animated:YES];
+            Class class = NSClassFromString(@"NYDebugLatlngController");
+            if (class) {
+                [self.navigationController pushViewController:[class new] animated:YES];
+            }
+            
         }break;
         case 5:{
             Class class = NSClassFromString(@"NYiPhoneInfoController");

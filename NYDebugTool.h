@@ -11,7 +11,7 @@
 #define NYDebugTool_h
 
 #import "NYDebugManagerController.h"
-#import "NYDebugController.h"
+#import "NYDebugLatlngController.h"
 #import "NYDebugManager.h"
 #import "NYDebugLogo.h"
 #import "NYEnviroument.h"
