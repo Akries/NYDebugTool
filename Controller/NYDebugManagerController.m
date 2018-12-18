@@ -67,7 +67,7 @@ NSString * const kDebugChangedNotification = @"";
         cell.textLabel.text = @"开启debug";
         cell.accessoryView = [self addDebugModeSwitch];
     }else if (indexPath.row == 2){
-        cell.textLabel.text = @"修改经纬度";
+        cell.textLabel.text = @"功能敬请期待";
     }else if (indexPath.row == 3){
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -109,11 +109,10 @@ NSString * const kDebugChangedNotification = @"";
             }];
         }break;
         case 2:{
-            Class class = NSClassFromString(@"NYDebugLatlngController");
-            if (class) {
-                [self.navigationController pushViewController:[class new] animated:YES];
-            }
-            
+            //            Class class = NSClassFromString(@"NYDebugLatlngController");
+            //            if (class) {
+            //                [self.navigationController pushViewController:[class new] animated:YES];
+            //            }
         }break;
         case 5:{
             Class class = NSClassFromString(@"NYiPhoneInfoController");
