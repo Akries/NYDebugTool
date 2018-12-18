@@ -11,7 +11,7 @@
 #import "NYDebugManager.h"
 #import "UIUtilities.h"
 #import "NYDebugLogo.h"
-#import "NYDebugController.h"
+#import "NYDebugLatlngController.h"
 
 NSString * const kDebugChangedNotification = @"";
 
