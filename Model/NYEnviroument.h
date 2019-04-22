@@ -17,8 +17,10 @@ static NSString * const kEnviroumentMqttHostKey = @"MqttHost";
 
 static NSString * const kEnviroumentReportURLKey = @"ReportURL";
 
-
 //static NSString * const kEnviroumentAuthHostKey = @"";
+
+
+NSString *ny_CurrentEnviroumentName(void);
 
 NSString *ny_CurrentApiHost(void);
 

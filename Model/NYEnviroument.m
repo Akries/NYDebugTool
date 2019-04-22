@@ -10,11 +10,16 @@
 
 static NSString *kEnviroumentDefaultMode = @"release";
 
+static NSString *__currentEnviroumentName = nil;
 static NSString *__currentApiHost = nil;
 static NSString *__currentMqttHost = nil;
 static NSString *__currentReportURL = nil;
 
 //static NSString *__currentAuthHost = nil;
+
+NSString *ny_CurrentEnviroumentName(){
+    return __currentEnviroumentName;
+}
 
 NSString *ny_CurrentApiHost(){
     return __currentApiHost;
@@ -67,6 +72,7 @@ BOOL ny_isReleaseMode(){
         [self.allEnvs addEntriesFromDictionary:config];
     }
 
+    __currentEnviroumentName = self.enviroumentName;
     __currentApiHost = [self enviroumentValueForKey:kEnviroumentApiHostKey];
     __currentMqttHost = [self enviroumentValueForKey:kEnviroumentMqttHostKey];
     __currentReportURL = [self enviroumentValueForKey:kEnviroumentReportURLKey];
@@ -81,6 +87,7 @@ BOOL ny_isReleaseMode(){
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+    __currentEnviroumentName = self.enviroumentName;
     __currentApiHost = [self enviroumentValueForKey:kEnviroumentApiHostKey];
     __currentMqttHost = [self enviroumentValueForKey:kEnviroumentMqttHostKey];
     __currentReportURL = [self enviroumentValueForKey:kEnviroumentReportURLKey];
