@@ -102,8 +102,20 @@ NSString * const kDebugChangedNotification = @"";
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"debugChangedNotification" object:nil];
                 [[NYDebugLogo logo] refreshEnviroumentLabel];
                 
-                self.showLabel.text = [NSString stringWithFormat:@"当前域名:\n%@\n\n tcp:\n %@\n\n 数据上报\n%@",ny_CurrentApiHost(),ny_CurrentMqttHost(),ny_CurrentReportURL()];
                 
+                NSDictionary *envdic = [[NYEnviroument defaultEnviroument] allEnvs][ny_CurrentEnviroumentName()];
+                NSString *envInfo = @"当前环境";
+                if ([envdic.allKeys[0] isEqualToString:@"DefaultModule"]) {
+                    for (int i = 0 ; i < [envdic[@"DefaultModule"] allKeys].count ; i ++) {
+                        envInfo = [envInfo stringByAppendingString:[NSString stringWithFormat:@"\n%@ -> %@",[envdic[@"DefaultModule"] allKeys][i],[envdic[@"DefaultModule"] allValues][i]]];
+                    }
+                }else{
+                    for (int i = 0 ; i < [envdic allKeys].count ; i ++) {
+                        envInfo = [envInfo stringByAppendingString:[NSString stringWithFormat:@"\n%@ -> %@",[envdic allKeys][i],[envdic allValues][i]]];
+                    }
+                }
+                self.showLabel.text = envInfo;
+
                 [UIUtilities showAlertWithTitle:@"提醒" message:@"请杀掉app，重新进入！！！" buttonTitles:@[@"确定"] clickBlock:^(NSUInteger index) {}];
                 [self.tableView reloadData];
             }];
@@ -151,10 +163,22 @@ NSString * const kDebugChangedNotification = @"";
 - (UILabel *)showLabel
 {
     if (!_showLabel) {
-        _showLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width - 60, 180)];
+        _showLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, [UIScreen mainScreen].bounds.size.height - 300, [UIScreen mainScreen].bounds.size.width - 60, 250)];
         _showLabel.font = [UIFont systemFontOfSize:14.0];
         _showLabel.numberOfLines = 0;
-        _showLabel.text = [NSString stringWithFormat:@"当前域名:\n%@\n\n tcp:\n %@\n\n 数据上报\n%@",ny_CurrentApiHost(),ny_CurrentMqttHost(),ny_CurrentReportURL()];
+//        _showLabel.text = [NSString stringWithFormat:@"当前域名:\n%@\n\n tcp:\n %@\n\n 数据上报\n%@",ny_CurrentApiHost(),ny_CurrentMqttHost(),ny_CurrentReportURL()];
+        NSDictionary *envdic = [[NYEnviroument defaultEnviroument] allEnvs][ny_CurrentEnviroumentName()];
+        NSString *envInfo = @"当前环境";
+        if ([envdic.allKeys[0] isEqualToString:@"DefaultModule"]) {
+            for (int i = 0 ; i < [envdic[@"DefaultModule"] allKeys].count ; i ++) {
+                envInfo = [envInfo stringByAppendingString:[NSString stringWithFormat:@"\n%@ -> %@",[envdic[@"DefaultModule"] allKeys][i],[envdic[@"DefaultModule"] allValues][i]]];
+            }
+        }else{
+            for (int i = 0 ; i < [envdic allKeys].count ; i ++) {
+                envInfo = [envInfo stringByAppendingString:[NSString stringWithFormat:@"\n%@ -> %@",[envdic allKeys][i],[envdic allValues][i]]];
+            }
+        }
+        _showLabel.text = envInfo;
     }
     return _showLabel;
 }

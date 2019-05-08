@@ -46,12 +46,13 @@ BOOL ny_isReleaseMode(){
 }
 
 @interface NYEnviroument()
-
-@property (nonatomic, strong) NSString *enviroumentName;
-@property (nonatomic, copy) NSString *enviroumentPath;
-
-@property (nonatomic, strong) NSMutableDictionary *allEnvs;
-@property (nonatomic, strong) NYEnviroumentModel *enviroumentModel;
+    
+    @property (nonatomic, strong) NSString *enviroumentName;
+    @property (nonatomic, strong) NSString *fileType;
+    @property (nonatomic, copy) NSString *enviroumentPath;
+    
+    @property (nonatomic, strong) NSMutableDictionary *allEnvs;
+    @property (nonatomic, strong) NYEnviroumentModel *enviroumentModel;
 
 @end
 
@@ -66,8 +67,19 @@ BOOL ny_isReleaseMode(){
     return staticEnv;
 }
 
-- (void)setEnviroumentsByConfigFile:(NSString *)filePath {
-    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:filePath];
+- (void)setEnviroumentsByConfigFile:(NSURL *)filePathUrl fileType:(NSString *)fileType {
+    self.fileType = fileType;
+    NSDictionary *config;
+    if ([fileType isEqualToString:@"json"]) {
+        NSData *data = [[NSData alloc] initWithContentsOfURL:filePathUrl];
+        id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            config = result;
+        }
+    }else if ([fileType isEqualToString:@"plist"]){
+        config = [NSDictionary dictionaryWithContentsOfURL:filePathUrl];
+    }
+    
     if (config) {
         [self.allEnvs addEntriesFromDictionary:config];
     }
@@ -94,11 +106,19 @@ BOOL ny_isReleaseMode(){
 //    __currentAuthHost = [self enviroumentValueForKey:kEnviroumentAuthHostKey];
 
 }
-
+    
 - (id)enviroumentValueForKey:(NSString *)key {
-    return [self enviroumentValueForKey:key moudleName:@"DefaultModule"];
+    if ([self.fileType isEqualToString:@"json"]) {
+        if (self.enviroumentName) {
+            NSDictionary *env = self.allEnvs[self.enviroumentName];
+            return env[key];
+        }
+        return nil;
+    }else if ([self.fileType isEqualToString:@"plist"]) {
+        return [self enviroumentValueForKey:key moudleName:@"DefaultModule"];
+    }
 }
-
+    
 - (id)enviroumentValueForKey:(NSString *)key moudleName:(NSString *)moduleName{
     if (self.enviroumentName) {
         NSDictionary *env = self.allEnvs[self.enviroumentName][moduleName];
@@ -106,7 +126,7 @@ BOOL ny_isReleaseMode(){
     }
     return nil;
 }
-
+    
 - (NSArray *)enviroumentNames{
     return [self.allEnvs allKeys];
 }

@@ -46,10 +46,9 @@ BOOL ny_isReleaseMode(void);
 
 /**
  根据配置文件设置网络环境
- @param filePath 配置文件的路径
+ @param filePathUrl 配置文件的路径URL   fileType 传json plist
  */
-- (void)setEnviroumentsByConfigFile:(NSString *)filePath;
-
+- (void)setEnviroumentsByConfigFile:(NSURL *)filePathUrl fileType:(NSString *)fileType;
 /**
  切换网络环境
  @param envname 网络环境的名称
