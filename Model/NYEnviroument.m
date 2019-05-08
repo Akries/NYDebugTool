@@ -117,6 +117,7 @@ BOOL ny_isReleaseMode(){
     }else if ([self.fileType isEqualToString:@"plist"]) {
         return [self enviroumentValueForKey:key moudleName:@"DefaultModule"];
     }
+    return nil;
 }
     
 - (id)enviroumentValueForKey:(NSString *)key moudleName:(NSString *)moduleName{
