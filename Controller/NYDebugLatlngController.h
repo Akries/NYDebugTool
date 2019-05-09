@@ -13,7 +13,7 @@ typedef void(^ChangeCurrentLocationBlock) (NSString *lat,NSString *lng);
 @interface NYDebugLatlngController : UIViewController
 
 @property(nonatomic,copy)ChangeCurrentLocationBlock changeBlock;
-
+- (void)setChangeBlock:(ChangeCurrentLocationBlock)changeBlock;
 @end
 
 NS_ASSUME_NONNULL_END

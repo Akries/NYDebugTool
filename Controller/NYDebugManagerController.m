@@ -67,7 +67,10 @@ NSString * const kDebugChangedNotification = @"";
         cell.textLabel.text = @"开启debug";
         cell.accessoryView = [self addDebugModeSwitch];
     }else if (indexPath.row == 2){
-        cell.textLabel.text = @"功能敬请期待";
+        cell.textLabel.text = @"修改经纬度";
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"NYDebugControllerLatKey"]) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@,%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"NYDebugControllerLatKey"],[[NSUserDefaults standardUserDefaults] objectForKey:@"NYDebugControllerLngKey"]];
+        }
     }else if (indexPath.row == 3){
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -121,10 +124,15 @@ NSString * const kDebugChangedNotification = @"";
             }];
         }break;
         case 2:{
-            //            Class class = NSClassFromString(@"NYDebugLatlngController");
-            //            if (class) {
-            //                [self.navigationController pushViewController:[class new] animated:YES];
-            //            }
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            Class class = NSClassFromString(@"NYDebugLatlngController");
+            if (class) {
+                NYDebugLatlngController *lClass = [class new];
+                [lClass setChangeBlock:^(NSString * _Nonnull lat, NSString * _Nonnull lng) {
+                    cell.detailTextLabel.text = ([lat floatValue] > 0) ? [NSString stringWithFormat:@"%@,%@",lat,lng] : @"";
+                }];
+                [self.navigationController pushViewController:lClass animated:YES];
+            }
         }break;
         case 5:{
             Class class = NSClassFromString(@"NYiPhoneInfoController");

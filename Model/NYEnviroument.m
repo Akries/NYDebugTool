@@ -89,6 +89,19 @@ BOOL ny_isReleaseMode(){
     __currentMqttHost = [self enviroumentValueForKey:kEnviroumentMqttHostKey];
     __currentReportURL = [self enviroumentValueForKey:kEnviroumentReportURLKey];
 //    __currentAuthHost =  [self enviroumentValueForKey:kEnviroumentAuthHostKey];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeActivity) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+- (void)becomeActivity
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NYDebugControllerLatKey"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NYDebugControllerLngKey"];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)modifyEnviroumentByName:(NSString *)envname {
