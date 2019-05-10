@@ -90,7 +90,7 @@ BOOL ny_isReleaseMode(){
     __currentReportURL = [self enviroumentValueForKey:kEnviroumentReportURLKey];
 //    __currentAuthHost =  [self enviroumentValueForKey:kEnviroumentAuthHostKey];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeActivity) name:UIApplicationDidBecomeActiveNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeActivity) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)becomeActivity
@@ -99,10 +99,10 @@ BOOL ny_isReleaseMode(){
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NYDebugControllerLngKey"];
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 - (void)modifyEnviroumentByName:(NSString *)envname {
     self.enviroumentName = envname;
