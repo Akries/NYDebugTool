@@ -17,5 +17,6 @@
 #import "NYEnviroument.h"
 
 #import "UIWindow+Debug.h"
+#import "SaicEnviroumentManager.h"
 
 #endif /* NYDebugTool_h */
