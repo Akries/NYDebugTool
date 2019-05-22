@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.source_files  = "**/*.{h,m}"
   #s.resources = ["**/*.{xib}"]
-   s.resource = "**/*.bundle"
+  s.resource = "**/*.bundle"
 
 
   s.requires_arc = true
